@@ -13,6 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+if (env('APP_ENV') === 'production') {
+    URL::forceScheme('https');
+}
+
+
+
 Route::get('/', function () {
     return view('home');
 });
@@ -27,3 +34,6 @@ Route::group(['middleware' => ['auth']], function() {
     */
     Route::get('/logout', 'LogoutController@perform')->name('logout.perform');
  });
+
+
+//URL::forceScheme('https');
